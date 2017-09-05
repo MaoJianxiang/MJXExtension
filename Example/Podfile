@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MJXExtension_Example' do
+  pod 'MJXExtension', :path => '../'
+
+  target 'MJXExtension_Tests' do
+    inherit! :search_paths
+
+    pod 'FBSnapshotTestCase'
+  end
+end

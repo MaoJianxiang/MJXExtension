@@ -1,0 +1,23 @@
+PODS:
+  - FBSnapshotTestCase (2.1.4):
+    - FBSnapshotTestCase/SwiftSupport (= 2.1.4)
+  - FBSnapshotTestCase/Core (2.1.4)
+  - FBSnapshotTestCase/SwiftSupport (2.1.4):
+    - FBSnapshotTestCase/Core
+  - MJXExtension (0.1.0)
+
+DEPENDENCIES:
+  - FBSnapshotTestCase
+  - MJXExtension (from `../`)
+
+EXTERNAL SOURCES:
+  MJXExtension:
+    :path: ../
+
+SPEC CHECKSUMS:
+  FBSnapshotTestCase: 094f9f314decbabe373b87cc339bea235a63e07a
+  MJXExtension: efa7cd9ee5f41da403b9ecc8d3cb4c45a2a014e1
+
+PODFILE CHECKSUM: 6f1b22dc116fc28548625fafc83eb54c8a66e06b
+
+COCOAPODS: 1.2.1

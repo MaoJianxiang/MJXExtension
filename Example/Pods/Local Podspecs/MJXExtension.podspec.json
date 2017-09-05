@@ -1,0 +1,22 @@
+{
+  "name": "MJXExtension",
+  "version": "0.1.0",
+  "summary": "A short description of MJXExtension.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/RanHao CC/MJXExtension",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "RanHao CC": "15208105440@163.com"
+  },
+  "source": {
+    "git": "https://github.com/RanHao CC/MJXExtension.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MJXExtension/Classes/**/*"
+}
