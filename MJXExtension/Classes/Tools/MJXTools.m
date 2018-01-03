@@ -9,6 +9,7 @@
 #import "MJXTools.h"
 #import <CommonCrypto/CommonDigest.h>
 #import <objc/runtime.h>
+#import <sys/utsname.h>//获取手机型号
 
 @implementation MJXTools
 
@@ -142,7 +143,7 @@
 
 #pragma mark -- 时间戳的转化
 + (NSString *)timeStringTimeWithString:(NSString *)str format:(NSString *)format{
-    NSDate *date = [NSDate dateWithTimeIntervalSince1970:str.integerValue/1000];//时间需要注意需不需要
+    NSDate *date = [NSDate dateWithTimeIntervalSince1970:str.integerValue];
     NSDateFormatter *formatter = [[NSDateFormatter alloc]init];
     [formatter setDateFormat:format];
     
@@ -175,7 +176,7 @@
 #pragma mark -- 距离现在的时间
 + (NSString *)distanceTimeWithBeforeTimeStr:(NSString *)str
 {
-    NSTimeInterval beTime= str.integerValue/1000;//时间需要注意需不需要
+    NSTimeInterval beTime= str.integerValue;//时间需要注意需不需要
     NSTimeInterval now = [[NSDate date]timeIntervalSince1970];
     double distanceTime = now - beTime;
     NSString * distanceStr;
@@ -216,10 +217,12 @@
 
 #pragma mark -- 获取当前时间截
 + (NSString *)getCurrentTimeInterval{
-    NSDate *currentDate = [[NSDate date] dateByAddingTimeInterval:8*3600];
     
-    NSTimeInterval interval = [currentDate timeIntervalSince1970];
-    return [NSString stringWithFormat:@"%.f",interval];
+    NSDate *now = [NSDate date];
+    NSTimeInterval interval = [now timeIntervalSince1970];
+    NSString *timeString = [NSString stringWithFormat:@"%0.f", interval];//转为字符串
+    
+    return timeString;
 }
 
 #pragma mark -- 比较日期大小
@@ -519,5 +522,141 @@
     return img;
 }
 
+
+#pragma mark -- 获取设备型号
++ (NSString *)iphoneType {
+    
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
+    if ([platform isEqualToString:@"iPhone1,1"]) return @"iPhone 2G";
+    if ([platform isEqualToString:@"iPhone1,2"]) return @"iPhone 3G";
+    if ([platform isEqualToString:@"iPhone2,1"]) return @"iPhone 3GS";
+    if ([platform isEqualToString:@"iPhone3,1"]) return @"iPhone 4";
+    if ([platform isEqualToString:@"iPhone3,2"]) return @"iPhone 4";
+    if ([platform isEqualToString:@"iPhone3,3"]) return @"iPhone 4";
+    if ([platform isEqualToString:@"iPhone4,1"]) return @"iPhone 4S";
+    if ([platform isEqualToString:@"iPhone5,1"]) return @"iPhone 5";
+    if ([platform isEqualToString:@"iPhone5,2"]) return @"iPhone 5";
+    if ([platform isEqualToString:@"iPhone5,3"]) return @"iPhone 5c";
+    if ([platform isEqualToString:@"iPhone5,4"]) return @"iPhone 5c";
+    if ([platform isEqualToString:@"iPhone6,1"]) return @"iPhone 5s";
+    if ([platform isEqualToString:@"iPhone6,2"]) return @"iPhone 5s";
+    if ([platform isEqualToString:@"iPhone7,1"]) return @"iPhone 6 Plus";
+    if ([platform isEqualToString:@"iPhone7,2"]) return @"iPhone 6";
+    if ([platform isEqualToString:@"iPhone8,1"]) return @"iPhone 6s";
+    if ([platform isEqualToString:@"iPhone8,2"]) return @"iPhone 6s Plus";
+    if ([platform isEqualToString:@"iPhone8,4"]) return @"iPhone SE";
+    if ([platform isEqualToString:@"iPhone9,1"]) return @"iPhone 7";
+    if ([platform isEqualToString:@"iPhone9,2"]) return @"iPhone 7 Plus";
+    if ([platform isEqualToString:@"iPhone10,1"]) return @"iPhone 8";
+    if ([platform isEqualToString:@"iPhone10,4"]) return @"iPhone 8";
+    if ([platform isEqualToString:@"iPhone10,2"]) return @"iPhone 8 Plus";
+    if ([platform isEqualToString:@"iPhone10,5"]) return @"iPhone 8 Plus";
+    if ([platform isEqualToString:@"iPhone10,3"]) return @"iPhone X";
+    if ([platform isEqualToString:@"iPhone10,6"]) return @"iPhone X";
+    if ([platform isEqualToString:@"iPod1,1"])  return @"iPod Touch 1G";
+    if ([platform isEqualToString:@"iPod2,1"]) return @"iPod Touch 2G";
+    if ([platform isEqualToString:@"iPod3,1"])  return @"iPod Touch 3G";
+    if ([platform isEqualToString:@"iPod4,1"])  return @"iPod Touch 4G";
+    if ([platform isEqualToString:@"iPod5,1"]) return @"iPod Touch 5G";
+    if ([platform isEqualToString:@"iPad1,1"])  return @"iPad 1G";
+    if ([platform isEqualToString:@"iPad2,1"]) return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,2"]) return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,3"]) return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,4"]) return @"iPad 2";
+    if ([platform isEqualToString:@"iPad2,5"]) return @"iPad Mini 1G";
+    if ([platform isEqualToString:@"iPad2,6"]) return @"iPad Mini 1G";
+    if ([platform isEqualToString:@"iPad2,7"]) return @"iPad Mini 1G";
+    if ([platform isEqualToString:@"iPad3,1"]) return @"iPad 3";
+    if ([platform isEqualToString:@"iPad3,2"]) return @"iPad 3";
+    if ([platform isEqualToString:@"iPad3,3"]) return @"iPad 3";
+    if ([platform isEqualToString:@"iPad3,4"])  return @"iPad 4";
+    if ([platform isEqualToString:@"iPad3,5"])  return @"iPad 4";
+    if ([platform isEqualToString:@"iPad3,6"])  return @"iPad 4";
+    if ([platform isEqualToString:@"iPad4,1"]) return @"iPad Air";
+    if ([platform isEqualToString:@"iPad4,2"])  return @"iPad Air";
+    if ([platform isEqualToString:@"iPad4,3"])  return @"iPad Air";
+    if ([platform isEqualToString:@"iPad4,4"])  return @"iPad Mini 2G";
+    if ([platform isEqualToString:@"iPad4,5"])  return @"iPad Mini 2G";
+    if ([platform isEqualToString:@"iPad4,6"])  return @"iPad Mini 2G";
+    if ([platform isEqualToString:@"i386"])  return @"iPhone Simulator";
+    if ([platform isEqualToString:@"x86_64"])  return @"iPhone Simulator";
+    
+    return platform;
+}
+
+
+#pragma mark -- 输入的数字限制
++ (BOOL)numTextField:(UITextField *)textField range:(NSRange)range replaceString:(NSString *)string{
+    //    限制只能输入数字
+    BOOL isHaveDian = YES;
+    if ([string isEqualToString:@" "]) {
+        return NO;
+    }
+    
+    if ([textField.text rangeOfString:@"."].location == NSNotFound) {
+        isHaveDian = NO;
+    }
+    if ([string length] > 0) {
+        
+        unichar single = [string characterAtIndex:0];//当前输入的字符
+        if ((single >= '0' && single <= '9') || single == '.') {//数据格式正确
+            
+            if([textField.text length] == 0){
+                if(single == '.') {
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+            }
+            
+            //输入的字符是否是小数点
+            if (single == '.') {
+                if(!isHaveDian)//text中还没有小数点
+                {
+                    isHaveDian = YES;
+                    return YES;
+                    
+                }else{
+                    
+                    [textField.text stringByReplacingCharactersInRange:range withString:@""];
+                    return NO;
+                }
+            }else{
+                if (isHaveDian) {//存在小数点
+                    
+                    //判断小数点的位数
+                    NSRange ran = [textField.text rangeOfString:@"."];
+                    if (range.location - ran.location <= 2) {
+                        return YES;
+                    }else{
+                        return NO;
+                    }
+                }else{
+                    return YES;
+                }
+            }
+        }else{//输入的数据格式不正确
+            [textField.text stringByReplacingCharactersInRange:range withString:@""];
+            return NO;
+        }
+    }
+    else
+    {
+        return YES;
+    }
+}
+
+
+
+#pragma mark -- 判断是否是同一天
++ (BOOL)isSameDay:(NSDate *)date1 date2:(NSDate *)date2
+{
+    NSCalendar *calendar = [NSCalendar currentCalendar];
+    unsigned unitFlag = NSYearCalendarUnit | NSMonthCalendarUnit | NSDayCalendarUnit;
+    NSDateComponents *comp1 = [calendar components:unitFlag fromDate:date1];
+    NSDateComponents *comp2 = [calendar components:unitFlag fromDate:date2];
+    return (([comp1 day] == [comp2 day]) && ([comp1 month] == [comp2 month]) && ([comp1 year] == [comp2 year]));
+}
 
 @end

@@ -107,6 +107,8 @@ typedef NS_ENUM(NSInteger,MD5Type) {
 /**
  时间截的转化
 
+ 注意：时间截需要以s(秒)为基本单位的，如果你的是以ms(毫秒)为基本单位，那需要转化为秒，即数值缩小1000倍
+ 
  @param str 需要传入的时间截字符串
  @param format 返回的格式同上
  @return 返回时间字符串
@@ -118,6 +120,8 @@ typedef NS_ENUM(NSInteger,MD5Type) {
 /**
  时间字符串转化成时间截
 
+ 注意：时间截是以s(秒)为基本单位的
+ 
  @param dateStr 时间字符串
  @param format 时间格式
  @return 时间截字符串
@@ -137,6 +141,9 @@ typedef NS_ENUM(NSInteger,MD5Type) {
 
 /**
   距离现在的时间
+ 
+ 注意：时间截需要以s(秒)为基本单位的，如果你的是以ms(毫秒)为基本单位，那需要转化为秒，即数值缩小1000倍
+ 
  @param str 需要传入的时间截字符串
  @return 结果
  */
@@ -144,6 +151,8 @@ typedef NS_ENUM(NSInteger,MD5Type) {
 
 /**
   获取当前时间截
+
+ 注意：获取的时间截以s(秒)为基本单位的，需要以ms(毫秒)则需要重写方法，按照.m中的方法把省略的小数位保留下来并扩大1000倍
 
  @return 时间截字符串
  */
@@ -256,5 +265,33 @@ typedef NS_ENUM(NSInteger,MD5Type) {
  @return image 可用的图片
  */
 + (UIImage *)fixOrientation:(UIImage *)aImage;
+
+
+/**
+ 获取设备型号
+ @return string 手机型号    
+ */
++ (NSString *)iphoneType;
+
+
+
+/**
+
+ 输入的数字限制,可以输入两位小数
+ 
+ @return Bool值
+ 
+ 使用: 把下面的方法的参数传入，返回值也作为这个方法的返回值
+ - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string;
+  
+ */
++ (BOOL)numTextField:(UITextField *)textField range:(NSRange)range replaceString:(NSString *)string;
+
+
+
+//MARK: -- 判断是否是同一天
++ (BOOL)isSameDay:(NSDate *)date1 date2:(NSDate *)date2;
+
+
 
 @end

@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MJXExtension'
-  s.version          = '0.0.1'
+  s.version          = '0.0.2'
   s.summary          = '这个库文件集成的是在开发中常用和习惯使用的方法.'
 
 # This description is used to generate tags and improve search results.
@@ -22,7 +22,7 @@ TODO: 这个库文件集成了在开发中方法常用的处理方法，使用�
                        DESC
 
   s.homepage         = 'https://github.com/MaoJianxiang/MJXExtension'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
+  # s.screenshots    = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { '毛建祥' => '15208105440@163.com' }
   s.source           = { :git => 'https://github.com/MaoJianxiang/MJXExtension.git', :tag => s.version.to_s }
@@ -33,10 +33,10 @@ TODO: 这个库文件集成了在开发中方法常用的处理方法，使用�
   s.source_files = 'MJXExtension/Classes/**/*'
   
   # s.resource_bundles = {
-  #   'MJXExtension' => ['MJXExtension/Assets/*.png']
+  #  'MJXExtension' => ['MJXExtension/Assets/*.png']
   # }
-
   # s.public_header_files = 'Pod/Classes/**/*.h'
   # s.frameworks = 'UIKit', 'MapKit'
   # s.dependency 'AFNetworking', '~> 2.3'
+
 end
